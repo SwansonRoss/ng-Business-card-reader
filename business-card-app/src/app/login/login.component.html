@@ -1,0 +1,14 @@
+<p>login works!</p>
+<div>
+    <form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
+        <div>
+            <label for="emailInput">Email: </label>
+            <input type="text" id ="emailInput" placeholder="Enter email address" name="emailAddress" ngModel>
+        </div>
+        <div>
+            <label for="pwInput">password: </label>
+            <input type="text" id ="pwInput" placeholder="Enter password" name="password" ngModel>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+</div>
