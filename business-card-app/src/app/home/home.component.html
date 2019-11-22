@@ -1,0 +1,19 @@
+
+<div class="list-group users-list">
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="row">
+                <p> {{value.username}}</p>
+            </div>
+            <div class="row">
+                <div *ngFor="let card of value.businessCards" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="row">
+                        <p> {{card.company}}</p>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div>
+            <form #f="ngForm" (ngSubmit)="addNewCard()">
+                <button type="submit">Submit</button>
+            </form>
+    </div> 

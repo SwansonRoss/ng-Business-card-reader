@@ -26,16 +26,20 @@ export class FirebaseService {
     })
   }
 
-  SignIn(email: string, password: string) {
+  SignIn(email: string, password: string): boolean {
     this.angularFireAuth
       .auth
       .signInWithEmailAndPassword(email, password)
       .then(res => {
         console.log('Successfully signed in!');
+        return true;
       })
       .catch(err => {
         console.log('Something is wrong:',err.message);
+        return false;
       });
+
+      return false;
   }
 
   getUsers(){
