@@ -1,0 +1,31 @@
+<p>add-card works!</p>
+
+<div>
+        <form #f="ngForm" (ngSubmit)="addNewCard(f.value)">
+            <div>
+                <label for="fNameInput">First Name: </label>
+                <input type="text" id ="fNameInput" placeholder="Enter First Name" name="firstName" ngModel>
+            </div>
+            <div>
+                <label for="lNameInput">Last Name: </label>
+                <input type="text" id ="lNameInput" placeholder="Enter Last Name" name="lastName" ngModel>
+            </div>
+            <div>
+                <label for="companyInput">Company Name: </label>
+                <input type="text" id ="companyInput" placeholder="Enter Company Name" name="company" ngModel>
+            </div>
+            <div>
+                <label for="emailInput">Email Address: </label>
+                <input type="text" id ="emailInput" placeholder="Enter Last Name" name="email" ngModel>
+            </div>
+            <div>
+                <label for="phoneInput">Phone Number: </label>
+                <input type="text" id ="phoneInput" placeholder="Enter First Name" name="phone" ngModel>
+            </div>
+            <div>
+                <label for="commentsInput">Additional Comments: </label>
+                <input type="text-area" id ="commentsInput" placeholder="Enter Last Name" name="comments" ngModel>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+</div> 

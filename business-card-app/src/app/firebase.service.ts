@@ -10,19 +10,10 @@ export class FirebaseService {
   constructor(public db: AngularFirestore, private angularFireAuth: AngularFireAuth) {
    }
 
-  createUser(value: any){
-    return this.db.collection('BusinessCards').doc(value.emailAddress).set({
-      username: value.emailAddress,
-      businessCards: [
-        {
-          firstName: "John",
-          lastName: "Test",
-          company: "TestCo Inc.",
-          email: "abc@def.xyz",
-          phone: "(123) 456-7890",
-          additionalInfo: ""
-        }
-      ]
+  createUser(){
+    return this.db.collection('BusinessCards').doc(localStorage.getItem('username')).set({
+      username: localStorage.getItem('username'),
+      businessCards: []
     })
   }
 
@@ -32,6 +23,8 @@ export class FirebaseService {
       .signInWithEmailAndPassword(email, password)
       .then(res => {
         console.log('Successfully signed in!');
+        localStorage.setItem('username', email);
+        console.log(`logged in: expected: ${email}; actual: ${localStorage.getItem('username')}`)
         return true;
       })
       .catch(err => {
@@ -44,11 +37,37 @@ export class FirebaseService {
 
   getUsers(){
     //return  this.db.collection('BusinessCards').snapshotChanges()
-    return this.db.collection('BusinessCards').doc('1CKIrNj6SPbrpVgdo0yR').get(); //TODO: find away to get id
-    }
+    return this.db.collection('BusinessCards').doc(localStorage.getItem('username')).get(); //TODO: find away to get id
+  }
 
-  addBusinessCard(id, value){
-    this.db.collection('BusinessCards').doc(id).set(value);
+  userExists(){
+    this.getUsers()
+      .subscribe( result => {
+        try{
+          console.log(result.data().payload);
+          return true;
+        }
+        catch{
+          this.createUser();
+          return false;
+        }
+      })
+  }
+
+  /**
+   this.firebaseService.getUsers()
+      .subscribe(result => {
+        // console.log(result.forEach(x => {
+        //   console.log(x.payload.doc.id);
+        // }));
+        // this.items = result;
+        this.value = result.data();
+        console.log(result.data())
+      })
+   */
+
+  addBusinessCard(value){
+    this.db.collection('BusinessCards').doc(localStorage.getItem('username')).set(value);
   }
 
     /*

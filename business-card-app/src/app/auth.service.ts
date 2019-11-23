@@ -16,7 +16,6 @@ export class AuthService {
   login(user: string, password:string){
     
     if(this.firebaseService.SignIn(user, password)){
-      localStorage.setItem('username', user);
       return true;
     }
 
@@ -24,7 +23,10 @@ export class AuthService {
   }
 
   logout(){
+
+    console.log(localStorage.getItem('username'))
     localStorage.removeItem('username');
+    console.log(localStorage.getItem('username'))
   }
 
   getUser(): any {

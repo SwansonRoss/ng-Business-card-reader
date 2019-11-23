@@ -15,19 +15,21 @@ import { RouterModule, Routes } from '@angular/router'
 import { AUTH_PROVIDERS } from './auth.service';
 import { LoggedInGuard } from './logged-in.guard';
 import { HomeComponent } from './home/home.component';
+import { AddCardComponent } from './add-card/add-card.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   {path: 'home', component: HomeComponent, canActivate: [LoggedInGuard] },
   {path: 'login', component: LoginComponent },
-  // {path: 'add', component: AddCardComponent}
+  {path: 'add', component: AddCardComponent}
 ]
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    AddCardComponent
   ],
   imports: [
     BrowserModule,
