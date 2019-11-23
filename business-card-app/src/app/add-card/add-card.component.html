@@ -1,4 +1,17 @@
 <p>add-card works!</p>
+<div style="position: relative;">
+    <div style="border: 2px dashed blue; position: absolute; left: 25px; bottom: 50px; height: 200px; width: 325px; z-index: 1;"></div>
+    <webcam [height]="300" [width]="500"  [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam"></webcam>
+</div>
+<button class="actionBtn" (click)="triggerSnapshot();">Take A Snapshot</button>
+<button class="actionBtn" (click)="toggleWebcam();">
+    <p *ngIf="showWebcam">Turn off webcam</p>
+    <p *ngIf="!showWebcam">Turn on webcam</p>
+</button>
+
+<div class="snapshot" *ngIf="webcamImage">
+    <img [src]="webcamImage.imageAsDataUrl"/>
+</div>
 
 <div>
         <form #f="ngForm" (ngSubmit)="addNewCard(f.value)">

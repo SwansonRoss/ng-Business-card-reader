@@ -17,6 +17,8 @@ import { LoggedInGuard } from './logged-in.guard';
 import { HomeComponent } from './home/home.component';
 import { AddCardComponent } from './add-card/add-card.component';
 
+import { WebcamModule } from 'ngx-webcam';
+
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   {path: 'home', component: HomeComponent, canActivate: [LoggedInGuard] },
@@ -39,7 +41,8 @@ const routes: Routes = [
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    WebcamModule
   ],
   providers: [
     AUTH_PROVIDERS,
