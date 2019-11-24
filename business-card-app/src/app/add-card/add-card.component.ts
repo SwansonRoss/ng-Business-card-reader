@@ -9,6 +9,11 @@ import { AngularFireAuth } from "@angular/fire/auth";
 import {Subject} from 'rxjs';
 import {Observable} from 'rxjs';
 import {WebcamImage, WebcamInitError, WebcamUtil} from 'ngx-webcam';
+import { importType } from '@angular/compiler/src/output/output_ast';
+
+// Cloudvision library
+import { ParseImageService } from '../parse-image.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-add-card',
@@ -18,6 +23,7 @@ import {WebcamImage, WebcamInitError, WebcamUtil} from 'ngx-webcam';
 export class AddCardComponent implements OnInit {
 
   firebaseService: FirebaseService;
+  parseImageService: ParseImageService;
   items: Array<any>;
   value: any;
 
@@ -40,8 +46,11 @@ export class AddCardComponent implements OnInit {
   // switch to next / previous / specific webcam; true/false: forward/backwards, string: deviceId
   private nextWebcam: Subject<boolean|string> = new Subject<boolean|string>();
 
-  constructor(public db: AngularFirestore, private auth: AngularFireAuth){
+  //Cloud vision object
+
+  constructor(public db: AngularFirestore, private auth: AngularFireAuth, private http: HttpClient ){
     this.firebaseService = new FirebaseService(db, auth);
+    this.parseImageService = new ParseImageService(http);
   }
 
   ngOnInit() {
@@ -92,6 +101,38 @@ export class AddCardComponent implements OnInit {
   public handleImage(webcamImage: WebcamImage): void {
     console.info('received webcam image', webcamImage);
     this.webcamImage = webcamImage;
+
+    const urlImage = webcamImage.imageAsDataUrl
+
+    console.log(urlImage)
+
+    const parsedImage = urlImage.replace(/^data:image\/(png|jpg|jpeg);base64,/, '');
+
+    console.log(parsedImage);
+
+    
+
+    const payload: any = {
+      'requests': [
+        {
+          'image': {
+            'content' : urlImage.substring(23, urlImage.length)
+          },
+          'features': [
+            {
+              'type': 'TEXT_DETECTION',
+              'maxResults': 1
+            }
+          ]
+        }
+      ]
+    }
+
+    this.parseImageService.parseForText(parsedImage);
+
+    
+
+    
   }
 
   public get triggerObservable(): Observable<void> {

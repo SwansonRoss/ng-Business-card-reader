@@ -19,6 +19,8 @@ import { AddCardComponent } from './add-card/add-card.component';
 
 import { WebcamModule } from 'ngx-webcam';
 
+import { HttpClientModule } from '@angular/common/http';
+
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   {path: 'home', component: HomeComponent, canActivate: [LoggedInGuard] },
@@ -42,7 +44,8 @@ const routes: Routes = [
     AngularFirestoreModule,
     AngularFireAuthModule,
     RouterModule.forRoot(routes),
-    WebcamModule
+    WebcamModule,
+    HttpClientModule
   ],
   providers: [
     AUTH_PROVIDERS,
