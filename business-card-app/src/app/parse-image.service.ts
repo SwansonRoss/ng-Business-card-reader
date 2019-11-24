@@ -9,7 +9,8 @@ export class ParseImageService {
   url: string;
   image: string;
 
-  cardContent: string;
+  cardPromise: Promise<string>;
+  cardContent: any;
 
   firstName: string;
   lastName: string;
@@ -22,8 +23,14 @@ export class ParseImageService {
   }
 
   public parseForText(image: string){
-    this.image = image;
+    this.cardPromise = this.getText(image);
+    this.cardContent = this.cardPromise.then(value => {
+      return value;
+    })
+    console.log(`Card Content: ${this.cardContent}`);
+  }
 
+  async getText(image: string): Promise<string>{
     this.http.post(this.url, {
       'requests': [
         {
@@ -44,14 +51,14 @@ export class ParseImageService {
         resp = value.responses;
 
         resp.forEach( x => {
-          this.cardContent = x.textAnnotations[0].description;
-          console.log(this.cardContent);
+          return (x.textAnnotations[0].description)
         })
       } catch{
         console.log("does not exist")
       }
     })
 
+    return null;
   }
 
 }
