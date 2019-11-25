@@ -24,33 +24,10 @@ export class HomeComponent implements OnInit {
   ngOnInit(){
     this.firebaseService.getUsers()
       .subscribe(result => {
-        // console.log(result.forEach(x => {
-        //   console.log(x.payload.doc.id);
-        // }));
-        // this.items = result;
         this.value = result.data();
         console.log(result.data())
       })
-      /*
-1CKIrNj6SPbrpVgdo0yR
-EEcpATLXtKV5Gu51nLCb
-FoKr4mOrlMScTbFtgdMf
-QYovDLvIlRktDInY0DEA
-
-
-this.tasks.pipe(map(actions => {
-        return actions.map(a => {
-          //Get document data
-          const data = a.payload.doc.data() as Task;
-
-          //Get document id
-          const id = a.payload.doc.id;
-
-          //Use spread operator to add the id to the document data
-          return { id, ...data };
-        });
-      }));
-      */
+   
   }
 
 }

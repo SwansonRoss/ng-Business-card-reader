@@ -20,12 +20,14 @@ import { AddCardComponent } from './add-card/add-card.component';
 import { WebcamModule } from 'ngx-webcam';
 
 import { HttpClientModule } from '@angular/common/http';
+import { SearchComponent } from './search/search.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   {path: 'home', component: HomeComponent, canActivate: [LoggedInGuard] },
   {path: 'login', component: LoginComponent },
-  {path: 'add', component: AddCardComponent}
+  {path: 'add', component: AddCardComponent},
+  {path: 'search', component: SearchComponent}
 ]
 
 @NgModule({
@@ -33,7 +35,8 @@ const routes: Routes = [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    AddCardComponent
+    AddCardComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

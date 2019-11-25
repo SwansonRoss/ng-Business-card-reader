@@ -1,0 +1,13 @@
+<p>search works!</p>
+    <form #f="ngForm" (ngSubmit)="searchByText(f.value)">
+            <select name="searchCategory" ngModel>
+                <option value="fName">First Name</option>
+                <option value="lName">Last Name</option>
+                <option value="company">Company</option>
+            </select>
+            <div>
+                <input type="text" id="searchInput" name="searchText" placeholder="Find a contact" ngModel>
+            </div>
+            <button type="submit">Submit</button>
+    </form>
+    
