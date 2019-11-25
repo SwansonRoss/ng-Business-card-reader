@@ -12,7 +12,7 @@ export class ParseImageService {
 
   cardPromise: Observable<any>;
   cardObserver: Observer<any>;
-  cardContent: string;
+  cardContent: any;
 
   firstName: string;
   lastName: string;

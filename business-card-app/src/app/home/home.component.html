@@ -5,7 +5,7 @@
                 <p> {{value.username}}</p>
             </div>
             <div class="row">
-                <div *ngFor="let card of value.businessCards" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div *ngFor="let card of value.businessCards; let i = index" class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="row">
                         <p>{{card.firstName}} {{card.lastName}} {{card.company}}</p>
                     </div>
@@ -13,7 +13,46 @@
                         <p>Email: {{card.email}} Phone: {{card.phone}}</p>
                     </div>
                     <div class="row">
-                        <button>Edit</button> <button>Delete</button>
+
+                        <form #f="ngForm" (ngSubmit)="showForm(i)">
+                         <button type="submit">Edit</button> 
+                        </form>
+                        <form #f="ngForm" (ngSubmit)="deleteCard(card.email)">
+                            <button type="submit">Delete</button> 
+                        </form>
+                    </div>
+                    <div>
+
+                    </div>
+                    <div class="hide" [ngClass]="{showEdit: editHidden}">
+                            <!-- <form formGroup]="cardForm" (ngSubmit)="addNewCard(cardForm.value)">-->
+                                <form #f="ngForm" (ngSubmit)="editCard(f.value, card.email)">
+                                    <div>
+                                        <label for="fNameInput">First Name: </label> 
+                                        <input type="text" id ="fNameInput" name="firstName" placeholder="Enter First Name" value="{{card.firstName}}" ngModel>
+                                    </div>
+                                    <div>
+                                        <label for="lNameInput">Last Name: </label>
+                                        <input type="text" id ="lNameInput" placeholder="Enter Last Name" name="lastName" value="{{card.lastName}}" ngModel>
+                                    </div>
+                                    <div>
+                                        <label for="companyInput">Company Name: </label>
+                                        <input type="text" id ="companyInput" placeholder="Enter Company Name" name="company" value="{{card.company}}"ngModel >
+                                    </div>
+                                    <div>
+                                        <label for="emailInput">Email Address: </label>
+                                        <input type="text" id ="emailInput" placeholder="Enter Last Name" name="email" value="{{card.email}}" ngModel>
+                                    </div>
+                                    <div>
+                                        <label for="phoneInput">Phone Number: </label>
+                                        <input type="text" id ="phoneInput" placeholder="Enter First Name" name="phone" value="{{card.phone}}" ngModel>
+                                    </div>
+                                    <div>
+                                        <label for="commentsInput">Additional Comments: </label>
+                                        <input type="text-area" id ="commentsInput" placeholder="Enter Last Name" name="comments" value="{{card.comments}}" ngModel>
+                                    </div>
+                                    <button type="submit">Submit</button>
+                                </form> 
                     </div>
             </div>
         </div>

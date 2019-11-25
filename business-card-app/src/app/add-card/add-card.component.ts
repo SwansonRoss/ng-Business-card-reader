@@ -92,8 +92,6 @@ export class AddCardComponent implements OnInit {
   }
 
   addNewCard(form: any){
-
-    console.log(`val: ${form}`)
     var user = this.value;
     user.businessCards.forEach(x => {console.log(x)});
     user.businessCards.push({
