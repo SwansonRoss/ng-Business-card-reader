@@ -24,10 +24,10 @@ import { SearchComponent } from './search/search.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  {path: 'home', component: HomeComponent, canActivate: [LoggedInGuard] },
-  {path: 'login', component: LoginComponent },
-  {path: 'add', component: AddCardComponent},
-  {path: 'search', component: SearchComponent}
+  {path: 'home', component: HomeComponent, canActivate: [LoggedInGuard]},
+  {path: 'login', component: LoginComponent},
+  {path: 'add', component: AddCardComponent, canActivate: [LoggedInGuard]},
+  {path: 'search', component: SearchComponent, canActivate: [LoggedInGuard]}
 ]
 
 @NgModule({

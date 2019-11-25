@@ -15,6 +15,7 @@ import { importType } from '@angular/compiler/src/output/output_ast';
 import { ParseImageService } from '../parse-image.service';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-card',
@@ -63,8 +64,8 @@ export class AddCardComponent implements OnInit {
 
   cardForm: FormGroup;
 
-  constructor(public db: AngularFirestore, private auth: AngularFireAuth, private http: HttpClient, fb: FormBuilder ){
-    this.firebaseService = new FirebaseService(db, auth);
+  constructor(public db: AngularFirestore, private auth: AngularFireAuth, private http: HttpClient, fb: FormBuilder, private router: Router ){
+    this.firebaseService = new FirebaseService(db, auth, router);
     this.parseImageService = new ParseImageService(http);
     this.cardForm = fb.group({
       'fName': [''],

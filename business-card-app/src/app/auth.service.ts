@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { FirebaseService } from './firebase.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from "@angular/fire/auth";
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +10,8 @@ import { AngularFireAuth } from "@angular/fire/auth";
 export class AuthService {
   firebaseService: FirebaseService;
 
-  constructor(public db: AngularFirestore, private auth: AngularFireAuth) { 
-    this.firebaseService = new FirebaseService(db, auth);
+  constructor(public db: AngularFirestore, private auth: AngularFireAuth, private router: Router) { 
+    this.firebaseService = new FirebaseService(db, auth, router);
   }
 
   login(user: string, password:string){

@@ -3,6 +3,7 @@ import { FirebaseService } from '../firebase.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from "@angular/fire/auth";
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -15,9 +16,9 @@ export class SearchComponent implements OnInit {
   value: any;
   authService: AuthService;
 
-  constructor(public db: AngularFirestore, private auth: AngularFireAuth){
-    this.firebaseService = new FirebaseService(db, auth);
-    this.authService = new AuthService(db, auth);
+  constructor(public db: AngularFirestore, private auth: AngularFireAuth, private router: Router){
+    this.firebaseService = new FirebaseService(db, auth, router);
+    this.authService = new AuthService(db, auth, router);
   }
 
   ngOnInit() {

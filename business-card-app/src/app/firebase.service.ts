@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { AngularFireAuth } from "@angular/fire/auth";
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirebaseService {
-  constructor(public db: AngularFirestore, private angularFireAuth: AngularFireAuth) {
+  constructor(public db: AngularFirestore, private angularFireAuth: AngularFireAuth, private router:Router) {
    }
 
   createUser(){
@@ -25,6 +26,7 @@ export class FirebaseService {
         console.log('Successfully signed in!');
         localStorage.setItem('username', email);
         console.log(`logged in: expected: ${email}; actual: ${localStorage.getItem('username')}`)
+        this.router.navigate(['home']);
         return true;
       })
       .catch(err => {

@@ -7,7 +7,13 @@
             <div class="row">
                 <div *ngFor="let card of value.businessCards" class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="row">
-                        <p> {{card.company}}</p>
+                        <p>{{card.firstName}} {{card.lastName}} {{card.company}}</p>
+                    </div>
+                    <div class="row">
+                        <p>Email: {{card.email}} Phone: {{card.phone}}</p>
+                    </div>
+                    <div class="row">
+                        <button>Edit</button> <button>Delete</button>
                     </div>
             </div>
         </div>
