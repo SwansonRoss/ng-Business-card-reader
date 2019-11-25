@@ -12,33 +12,38 @@
 <div class="snapshot" *ngIf="webcamImage">
     <img [src]="webcamImage.imageAsDataUrl"/>
 </div>
-
 <div>
-        <form #f="ngForm" (ngSubmit)="addNewCard(f.value)">
+        <form [formGroup]="cardForm" (ngSubmit)="addNewCard(cardForm.value)">
             <div>
-                <label for="fNameInput">First Name: </label>
-                <input type="text" id ="fNameInput" placeholder="Enter First Name" name="firstName" ngModel>
+                <label for="fNameInput">First Name: </label> <!-- Removed ngModel from -->
+                <input type="text" id ="fNameInput" name="firstName" placeholder="Enter First Name" value="{{parsedFName}}" [formControl]="cardForm.controls['fName']">
             </div>
             <div>
                 <label for="lNameInput">Last Name: </label>
-                <input type="text" id ="lNameInput" placeholder="Enter Last Name" name="lastName" ngModel>
+                <input type="text" id ="lNameInput" placeholder="Enter Last Name" name="lastName" value="{{parsedLName}}" [formControl]="cardForm.controls['lName']">
             </div>
             <div>
                 <label for="companyInput">Company Name: </label>
-                <input type="text" id ="companyInput" placeholder="Enter Company Name" name="company" ngModel>
+                <input type="text" id ="companyInput" placeholder="Enter Company Name" name="company" value="{{parsedCompany}}" [formControl]="cardForm.controls['company']">
             </div>
             <div>
                 <label for="emailInput">Email Address: </label>
-                <input type="text" id ="emailInput" placeholder="Enter Last Name" name="email" ngModel>
+                <input type="text" id ="emailInput" placeholder="Enter Last Name" name="email" value="{{parsedEmail}}" [formControl]="cardForm.controls['email']">
             </div>
             <div>
                 <label for="phoneInput">Phone Number: </label>
-                <input type="text" id ="phoneInput" placeholder="Enter First Name" name="phone" ngModel>
+                <input type="text" id ="phoneInput" placeholder="Enter First Name" name="phone" value="{{parsedPhone}}" [formControl]="cardForm.controls['phone']">
             </div>
             <div>
                 <label for="commentsInput">Additional Comments: </label>
-                <input type="text-area" id ="commentsInput" placeholder="Enter Last Name" name="comments" ngModel>
+                <input type="text-area" id ="commentsInput" placeholder="Enter Last Name" name="comments" [formControl]="cardForm.controls['comments']">
             </div>
             <button type="submit">Submit</button>
         </form>
 </div> 
+
+<div *ngIf="cardContent">
+    <div *ngFor="let content of cardContent">
+        {{ content }}
+    </div>
+</div>
