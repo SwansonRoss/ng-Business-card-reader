@@ -1,14 +1,21 @@
-<p>login works!</p>
-<div>
+
+<div class="login-container">
+    <div style="padding-bottom: 25px">
+        <h2>Login to see your business cards:</h2>
+    </div>
     <form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
-        <div>
+        <div class="row">
+        <div class="col-md-6 form-group">
             <label for="emailInput">Email: </label>
-            <input type="text" id ="emailInput" placeholder="Enter email address" name="emailAddress" ngModel>
+            <input type="text" id ="emailInput" class="form-control" placeholder="Enter email address" name="emailAddress" ngModel>
         </div>
-        <div>
+        </div>
+        <div class="row">
+        <div class="col-md-6 form-group">
             <label for="pwInput">password: </label>
-            <input type="text" id ="pwInput" placeholder="Enter password" name="password" ngModel>
+            <input type="text" id ="pwInput" class="form-control" placeholder="Enter password" name="password" ngModel>
         </div>
-        <button type="submit">Submit</button>
+        </div>
+        <button class="btn btn-primary" type="submit">Submit</button>
     </form>
 </div>

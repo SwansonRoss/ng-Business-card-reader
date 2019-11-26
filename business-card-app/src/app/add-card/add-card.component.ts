@@ -31,7 +31,7 @@ export class AddCardComponent implements OnInit {
   cardContent: Array<string>;
 
   // toggle webcam on/off
-  public showWebcam = true;
+  public showWebcam = false;
   public allowCameraSwitch = true;
   public multipleWebcamsAvailable = false;
   public deviceId: string;

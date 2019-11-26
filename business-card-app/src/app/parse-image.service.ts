@@ -25,43 +25,11 @@ export class ParseImageService {
   }
 
   public async parseForText(image: string){
-    // var observer = {
-    //   next: function(value){
-    //     console.log(`next: ${value}`);
-    //     this.cardContent = value.responses[0].textAnnotations[0].description
-    //     console.log(this.cardContent)
-    //     return this.cardContent;
-    //   },
-    //   error: function(value){
-    //     console.log(`error: ${value}`);
-    //   },
-    //   complete: function(value){
-    //     console.log(`completed: ${value}`);
-    //   }
-    // }
+
 
     return this.getText(image)
       .subscribe(value => this.cardContent = value.responses[0].textAnnotations[0].description);
 
-
-      // console.log(value.responses[0].textAnnotations[0].description);
-      //   return value.responses[0].textAnnotations[0].description;
-
-    // this.cardPromise
-    //   .subscribe(value => {
-    //   try{
-    //     var resp: Array<any> 
-    //     resp = value.responses;
-
-    //     resp.forEach( x => {
-    //       this.cardContent = x.textAnnotations[0].description.toString();
-    //     })
-    //   } catch{
-    //     console.log("does not exist")
-    //   }
-
-    //   console.log(this.cardContent);
-    // });
 
   }
 

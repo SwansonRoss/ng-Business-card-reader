@@ -1,30 +1,34 @@
 
-<div class="list-group users-list">
-        <div class="list-group-item list-group-item-action flex-column align-items-start">
-            <div class="row">
-                <p> {{value.username}}</p>
+<div class="list-group users-list home-page-container">
+        <div class="list-group-item-action flex-column align-items-start">
+            <div style="padding-bottom: 25px">
+                <h2>Your business cards:</h2>
             </div>
             <div class="row">
-                <div *ngFor="let card of value.businessCards; let i = index" class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="row">
-                        <p>{{card.firstName}} {{card.lastName}} {{card.company}}</p>
+                <div *ngFor="let card of value.businessCards; let i = index" class="card-container list-group-item-action flex-column align-items-start">
+                    <div class="business-card-container">
+                    <div class="card-name">
+                        {{card.firstName}} {{card.lastName}}
                     </div>
-                    <div class="row">
-                        <p>Email: {{card.email}} Phone: {{card.phone}}</p>
+                    <div class="card-company">
+                        {{card.company}}
                     </div>
-                    <div class="row">
-
-                        <form #f="ngForm" (ngSubmit)="showForm(i)">
-                         <button type="submit">Edit</button> 
+                    <div class="card-contact-info">
+                        <div class="card-email"><span class="card-contact-label">Email:</span> {{card.email}}</div> 
+                        <div class="card-phone"><span  class="card-contact-label">Phone:</span> {{card.phone}}</div>
+                    </div>
+                    <div class="card-buttons">
+                        <form #f="ngForm" (ngSubmit)="showForm(i)" class="card-button">
+                            <button class="btn" type="submit">Edit</button> 
                         </form>
-                        <form #f="ngForm" (ngSubmit)="deleteCard(card.email)">
-                            <button type="submit">Delete</button> 
+                        <form #f="ngForm" (ngSubmit)="deleteCard(card.email)" class="card-button" >
+                            <button class="btn btn-danger" type="submit">Delete</button> 
                         </form>
                     </div>
                     <div>
 
                     </div>
-                    <div class="hide" [ngClass]="{showEdit: editHidden}">
+                    <div class="hide" [ngClass]="{show: editHidden}">
                             <!-- <form formGroup]="cardForm" (ngSubmit)="addNewCard(cardForm.value)">-->
                                 <form #f="ngForm" (ngSubmit)="editCard(f.value, card.email)">
                                     <div>
@@ -54,6 +58,7 @@
                                     <button type="submit">Submit</button>
                                 </form> 
                     </div>
+                </div>
             </div>
         </div>
     </div>

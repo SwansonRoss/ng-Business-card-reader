@@ -15,6 +15,7 @@ export class SearchComponent implements OnInit {
   cards: Array<any>;
   value: any;
   authService: AuthService;
+  foundCards: Array<any>;
 
   constructor(public db: AngularFirestore, private auth: AngularFireAuth, private router: Router){
     this.firebaseService = new FirebaseService(db, auth, router);
@@ -32,12 +33,14 @@ export class SearchComponent implements OnInit {
   }
 
   searchByText(form: any){
+    this.foundCards = [];
     console.log(form.searchCategory);
     console.log(form.searchText);
     if(form.searchCategory === "fName"){
       this.cards.forEach(card =>{
         if(card.firstName.includes(form.searchText)){
           console.log(`Found: ${card.firstName}`)
+          this.foundCards.push(card);
         }
       })
     }
@@ -45,6 +48,7 @@ export class SearchComponent implements OnInit {
       this.cards.forEach(card =>{
         if(card.lastName.includes(form.searchText)){
           console.log(`Found: ${card.lastName}`)
+          this.foundCards.push(card);
         }
       })
     }
@@ -52,6 +56,7 @@ export class SearchComponent implements OnInit {
       this.cards.forEach(card =>{
         if(card.company.includes(form.searchText)){
           console.log(`Found: ${card.company}`)
+          this.foundCards.push(card);
         }
       })
     }

@@ -1,0 +1,35 @@
+.hide{
+    display: none;
+}
+
+.show{
+    display: inline !important;
+}
+
+.masthead-title{
+    font-size: 24px;
+}
+
+.masthead-author{
+    padding-bottom: 20px;
+}
+
+.nav-header{
+    padding: 20px 50px;
+    background: linear-gradient(60deg, #ffe0e0, #e0e0ef);
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+}
+
+.nav-link{
+    font-size: 18px;
+    color: #4f4fdf;
+    text-decoration: none;
+}
+
+.nav-link:hover{
+    text-decoration: underline;
+}
+
+

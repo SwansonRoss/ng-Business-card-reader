@@ -1,49 +1,64 @@
-<p>add-card works!</p>
-<div style="position: relative;">
-    <div style="border: 2px dashed blue; position: absolute; left: 25px; bottom: 50px; height: 200px; width: 325px; z-index: 1;"></div>
-    <webcam [height]="300" [width]="500"  [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam"></webcam>
-</div>
-<button class="actionBtn" (click)="triggerSnapshot();">Take A Snapshot</button>
-<button class="actionBtn" (click)="toggleWebcam();">
-    <p *ngIf="showWebcam">Turn off webcam</p>
-    <p *ngIf="!showWebcam">Turn on webcam</p>
-</button>
-
-<div class="snapshot" *ngIf="webcamImage">
-    <img [src]="webcamImage.imageAsDataUrl"/>
+<div class="add-card-container">
+    <div>
+        <h2 class="add-card-headline">Add a new card</h2>
+    </div>
+    <div class="add-card-instructions">
+        Take a photo with your webcam to auto-fill, or fill in the fields below manually.
+    </div>
+<div class="camera-container row">
+    <div class="col-md-8">
+        <div style="padding-bottom: 20px;">
+        <button class="btn btn-primary"  (click)="toggleWebcam();">
+            <p *ngIf="showWebcam">Turn off webcam</p>
+            <p *ngIf="!showWebcam">Turn on webcam</p>
+        </button>
+        </div>
+        <div style="position: relative;">
+            <div *ngIf="showWebcam" style="border: 2px dashed blue; position: absolute; left: 30px; bottom: 50px; height: 200px; width: 325px; z-index: 1;"></div>
+            <webcam [height]="300" [width]="500"  [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam"></webcam>
+        </div>
+        <div style="padding: 20px 0;">
+            <button *ngIf="showWebcam" class="btn btn-success" (click)="triggerSnapshot();">Take A Snapshot</button>
+        </div>
+    </div>
+    <div class="snapshot col-md-4" *ngIf="webcamImage">
+        <img class="snapped-photo" [src]="webcamImage.imageAsDataUrl"/>
+    </div>
 </div>
 <div>
         <form [formGroup]="cardForm" (ngSubmit)="addNewCard(cardForm.value)">
-            <div>
+            <div class="row">
+            <div class="form-group col-md-6">
                 <label for="fNameInput">First Name: </label> <!-- Removed ngModel from -->
-                <input type="text" id ="fNameInput" name="firstName" placeholder="Enter First Name" value="{{parsedFName}}" [formControl]="cardForm.controls['fName']">
+                <input type="text" id ="fNameInput" class="form-control" name="firstName" placeholder="Enter First Name" value="{{parsedFName}}" [formControl]="cardForm.controls['fName']">
             </div>
-            <div>
+            <div class="form-group col-md-6">
                 <label for="lNameInput">Last Name: </label>
-                <input type="text" id ="lNameInput" placeholder="Enter Last Name" name="lastName" value="{{parsedLName}}" [formControl]="cardForm.controls['lName']">
+                <input type="text" id ="lNameInput" class="form-control"  placeholder="Enter Last Name" name="lastName" value="{{parsedLName}}" [formControl]="cardForm.controls['lName']">
             </div>
-            <div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-12">
                 <label for="companyInput">Company Name: </label>
-                <input type="text" id ="companyInput" placeholder="Enter Company Name" name="company" value="{{parsedCompany}}" [formControl]="cardForm.controls['company']">
+                <input type="text" id ="companyInput" class="form-control"  placeholder="Enter Company Name" name="company" value="{{parsedCompany}}" [formControl]="cardForm.controls['company']">
             </div>
-            <div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
                 <label for="emailInput">Email Address: </label>
-                <input type="text" id ="emailInput" placeholder="Enter Last Name" name="email" value="{{parsedEmail}}" [formControl]="cardForm.controls['email']">
+                <input type="text" id ="emailInput" class="form-control "  placeholder="Enter Last Name" name="email" value="{{parsedEmail}}" [formControl]="cardForm.controls['email']">
             </div>
-            <div>
+            <div class="form-group col-md-6">
                 <label for="phoneInput">Phone Number: </label>
-                <input type="text" id ="phoneInput" placeholder="Enter First Name" name="phone" value="{{parsedPhone}}" [formControl]="cardForm.controls['phone']">
+                <input type="text" id ="phoneInput" class="form-control"  class="form-control" placeholder="Enter First Name" name="phone" value="{{parsedPhone}}" [formControl]="cardForm.controls['phone']">
             </div>
-            <div>
+        </div>
+            <div class="form-group">
                 <label for="commentsInput">Additional Comments: </label>
-                <input type="text-area" id ="commentsInput" placeholder="Enter Last Name" name="comments" [formControl]="cardForm.controls['comments']">
+                <input type="text-area" class="form-control" id ="commentsInput" placeholder="Enter Last Name" name="comments" [formControl]="cardForm.controls['comments']">
             </div>
-            <button type="submit">Submit</button>
+            <button class="btn btn-primary" type="submit">Submit</button>
         </form>
 </div> 
 
-<div *ngIf="cardContent">
-    <div *ngFor="let content of cardContent">
-        {{ content }}
-    </div>
 </div>

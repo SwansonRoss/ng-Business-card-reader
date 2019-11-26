@@ -6,10 +6,28 @@
 <!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
 <!-- * * * * * * * to get started with your project! * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<div class="app-container">
 <div>
-    <form #f="ngForm" (ngSubmit)="logout()">
-        <button type="submit">Log out</button>
-    </form>
+    <div class="nav nav-header">
+        <div class="nav-container">
+        <div class="masthead-title">
+            Business card app
+        </div>
+        <div class="masthead-author">
+            By <a style="color: #4f4fdf;" href="https://www.linkedin.com/in/raswanson" target="_blank">Ross Swanson</a> for CSC 436
+        </div>
+        <div style="display: inline;" class="hide" [ngClass]="{show: authService.isLoggedIn()}">
+            <span><a class="nav-link" [routerLink]="['/home']">Home</a></span> | 
+            <span><a class="nav-link" [routerLink]="['/add']">Add New Card</a></span> | 
+            <span><a class="nav-link" [routerLink]="['/search']">Search</a></span>
+        </div>
+        <div class="hide" [ngClass]="{show: authService.isLoggedIn()}">
+            <form #f="ngForm" (ngSubmit)="logout()" style="text-align: right; display: inline; position: absolute; right: 70px;">
+                <button class="btn" type="submit">Log out</button>
+            </form>
+        </div>
+    </div>
+    </div>
 </div>
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
@@ -23,3 +41,5 @@
 
 
 <router-outlet></router-outlet>
+
+</div>
