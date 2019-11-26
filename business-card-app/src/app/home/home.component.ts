@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
       .subscribe(result => {
         this.value = result.data();
         console.log(result.data())
-        this.items = this.value.businessCards
+        this.items = this.value.businessCards.sort((a, b) => (a.lastName > b.lastName) ? 1 : -1)
       })
 
     this.editHidden = false;
@@ -47,6 +47,7 @@ export class HomeComponent implements OnInit {
           additionalInfo: form.comments
     })
     this.firebaseService.addBusinessCard(this.value);
+    this.items = this.value.businessCards.sort((a, b) => (a.lastName > b.lastName) ? 1 : -1)
     return false;
   }
 

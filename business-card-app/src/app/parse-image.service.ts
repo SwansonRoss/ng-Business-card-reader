@@ -33,8 +33,8 @@ export class ParseImageService {
 
   }
 
-  getText(image: string): Observable<string> {
-    return this.http.post<string>(this.url, {
+  getText(image: string): Observable<any> {
+    return this.http.post<any>(this.url, {
         'requests': [
           {
             'image': {

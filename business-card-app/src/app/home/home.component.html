@@ -17,6 +17,10 @@
                         <div class="card-email"><span class="card-contact-label">Email:</span> {{card.email}}</div> 
                         <div class="card-phone"><span  class="card-contact-label">Phone:</span> {{card.phone}}</div>
                     </div>
+                    <div>
+                        <p class="card-contact-label">Additional Comments:</p>
+                        <p>{{card.additionalInfo}}</p>
+                    </div>
                     <div class="card-buttons">
                         <form #f="ngForm" (ngSubmit)="showForm(i)" class="card-button">
                             <button class="btn" type="submit">Edit</button> 
